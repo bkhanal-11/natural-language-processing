@@ -129,3 +129,13 @@ def model(data_x, ix_to_char, char_to_ix, num_iterations = 35000, n_a = 50, dino
             print('\n')
         
     return parameters, last_dino_name
+
+if __name__ == "__main__":
+    data = open('datasets/dinosaurs.txt', 'r').read()
+    data= data.lower()
+    chars = list(set(data))
+    data_size, vocab_size = len(data), len(chars)
+    chars = sorted(chars)
+    char_to_idx = { ch:i for i,ch in enumerate(chars) }
+    idx_to_char = { i:ch for i,ch in enumerate(chars) }
+    parameters, last_name = model(data.split("\n"), idx_to_char, char_to_idx, 22001, verbose = True)
